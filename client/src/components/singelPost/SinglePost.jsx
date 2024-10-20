@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./singlePost.css";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
 
 function SinglePost() {
@@ -14,10 +14,10 @@ function SinglePost() {
     const getPost = async () => {
      
         const res = await axios.get("http://localhost:5000/api/posts/" + path);
-        console.log(res.data);
+        // console.log(res.data);
         setPost(res.data);
 
-         console.log("hello dear");
+        //  console.log("hello dear");
     }
     getPost()
   }, [path]);
@@ -39,61 +39,14 @@ function SinglePost() {
         </h1>
         <div className="singlePostInfo">
           <span className="singlePostAuthor">
-            Author : <b>{post && post.username}</b>
+            Author : <Link className="link" to={`/?user=${post.username}`}> {post.username} </Link>
           </span>
           <span className="singlePostDate">
             {post && new Date(post.createdAt).toDateString()}
           </span>
         </div>
         <p className="singlePostDesc">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. In quasi
-          deleniti dicta ipsum illum fugiat aspernatur distinctio eos facilis
-          non, soluta rem. Magnam porro facilis quisquam ab, iste atque, magni
-          error accusantium provident deserunt libero laborum! Voluptatum,
-          officiis! Totam nihil, maiores ipsa, voluptatibus cum repudiandae
-          labore reprehenderit ab icta ipsum illum fugiat aspernatur distinctio
-          eos facilis non, soluta rem. Magnam porro facilis quisquam ab, iste
-          atque, magni error accusantium provident deserunt libero laborum!
-          Voluptatum, officiis! Totam nihil, maiores ipsa, voluptatibus cum
-          repudiandae labore reprehenderit ab icta ipsum illum fugiat aspernatur
-          distinctio eos facilis non, soluta rem. Magnam porro facilis quisquam
-          ab, iste atque, magni error accusantium provident deserunt libero
-          laborum! Voluptatum, officiis! Totam nihil, maiores ipsa, voluptatibus
-          cum repudiandae labore reprehenderit ab icta ipsum illum fugiat
-          aspernatur distinctio eos facilis non, soluta rem. Magnam porro
-          facilis quisquam ab, iste atque, magni error accusantium provident
-          deserunt libero laborum! Voluptatum, officiis! Totam nihil, maioicta
-          ipsum illum fugiat aspernatur distinctio eos facilis non, soluta rem.
-          Magnam porro facilis quisquam ab, iste atque, magni error accusantium
-          provident deserunt libero laborum! Voluptatum, officiis! Totam nihil,
-          maiores ipsa, voluptatibus cum repudiandae labore reprehenderit ab
-          icta ipsum illum fugiat aspernatur distinctio eos facilis non, soluta
-          rem. Magnam porro facilis quisquam ab, iste atque, magni error
-          accusantium provident deserunt libero laborum! Voluptatum, officiis!
-          Totam nihil, maiores ipsa, voluptatibus cum repudiandae labore
-          reprehenderit ab icta ipsum illum fugiat aspernatur distinctio eos
-          facilis non, soluta rem. Magnam porro facilis quisquam ab, iste atque,
-          magni error accusantium provident deserunt libero laborum! Voluptatum,
-          officiis! Totam nihil, maiores ipsa, voluptatibus cum repudiandae
-          labore reprehenderit ab icta ipsum illum fugiat aspernatur distinctio
-          eos facilis non, soluta rem. Magnam porro facilis quisquam ab, iste
-          atque, magni error accusantium provident deserunt libero laborum!
-          Voluptatum, officiis! Totam nihil, maiores ipsa, voluptatibus cum
-          repudiandae labore reprehenderit ab icta ipsum illum fugiat aspernatur
-          distinctio eos facilis non, soluta rem. Magnam porro facilis quisquam
-          ab, iste atque, magni error accusantium provident deserunt libero
-          laborum! Voluptatum, officiis! Totam nihil, maiores ipsa, voluptatibus
-          cum repudiandae labore reprehenderit ab icta ipsum illum fugiat
-          aspernatur distinctio eos facilis non, soluta rem. Magnam porro
-          facilis quisquam ab, iste atque, magni error accusantium provident
-          deserunt libero laborum! Voluptatum, officiis! Totam nihil, maiores
-          ipsa, voluptatibus cum repudiandae labore reprehenderit ab uptatibus
-          cum repudiandae labore reprehenderit ab icta ipsum illum fugiat
-          aspernatur distinctio eos facilis non, soluta rem. Magnam porro
-          facilis quisquam ab, iste atque, magni error accusantium provident
-          deserunt libero laborum! Voluptatum, officiis! Totam nihil, maiores
-          ipsa, voluptatibus cum repudiandae labore reprehenderit ab quas soluta
-          aspernatur, temporibus quasi nesciunt nam consequuntur!
+          {post && post.desc}
         </p>
       </div>
     </div>

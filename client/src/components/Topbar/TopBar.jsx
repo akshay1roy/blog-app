@@ -1,25 +1,28 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./topbar.css";
-import {Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { Context } from "../context/Context";
 function TopBar() {
-  const user = false;
-  // const navigate=NavLink();
-  const navigate=useNavigate();
-  const [toggle,setToggle]=useState(false);
+  const { user, dispatch } = useContext(Context);
+  const PF = "http://localhost:5000/images/";
 
-  const handleClick=()=>{
+  const handleLogout = () => {
+    dispatch({ type: "LOGOUT" });
+  };
+
+  const navigate = useNavigate();
+  const [toggle, setToggle] = useState(false);
+
+  const handleClick = () => {
     // navigate('/')
-    if(!toggle){
-      navigate('/settings')
+    if (!toggle) {
+      navigate("/settings");
       setToggle(true);
+    } else {
+      navigate("/");
+      setToggle(false);
     }
-    else{
-      navigate('/');
-      setToggle(false)
-    }
-   
-
-  }
+  };
   return (
     <div className="top">
       <div className="topLeft">
@@ -50,28 +53,31 @@ function TopBar() {
               WRITE
             </Link>
           </li>
-          <li className="topListItem">{user && "LOGOUT"}</li>
+          <li className="topListItem" onClick={handleLogout}>
+            {user && "LOGOUT"}
+          </li>
         </ul>
       </div>
       <div className="topRight">
         {user ? (
-          <img onClick={handleClick} style={{cursor:"pointer"}}
-            src="https://images.pexels.com/photos/593655/pexels-photo-593655.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          <img
+            onClick={handleClick}
+            style={{ cursor: "pointer" }}
+            src={PF + user.profilePic}
             alt=""
             className="topImg"
           />
         ) : (
           <ul className="topList">
             <li className="topListItem">
-            <Link className="link" to="/login">
-              LOGIN
-            </Link>
+              <Link className="link" to="/login">
+                LOGIN
+              </Link>
             </li>
             <li className="topListItem">
-           
-            <Link className="link" to="/register">
-              REGISTER
-            </Link>
+              <Link className="link" to="/register">
+                REGISTER
+              </Link>
             </li>
           </ul>
         )}

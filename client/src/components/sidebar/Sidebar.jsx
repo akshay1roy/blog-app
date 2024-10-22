@@ -10,7 +10,7 @@ const Sidebar = () => {
     const getCats = async () => {
       const res = await axios.get("/categories");
       setCats(res.data);
-      console.log(res.data);
+      // console.log(res.data);
     };
     getCats();
   }, []);

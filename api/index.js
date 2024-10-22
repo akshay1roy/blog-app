@@ -8,10 +8,12 @@ const postRoute = require("./routes/posts")
 const categoryRoute = require("./routes/categories")
 const multer = require("multer");
 const cors = require('cors');
+const path=require("path")
 
 dotenv.config();
 app.use(express.json());
 app.use(cors());
+app.use("/images",express.static(path.join(__dirname,"/images")))
 
 const URI = process.env.MONGO_URL;
 

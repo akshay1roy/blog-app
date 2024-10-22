@@ -39,6 +39,13 @@
     width: 70vw;
 }
 
+.writeInputCategory{
+    font-size: 16px;
+    /* border-bottom: 1px solid gray; */
+   
+}
+
+
 .writeInput:focus{
     outline: none;
 }
